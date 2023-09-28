@@ -41,7 +41,7 @@ android {
 }
 
 val hyphenateVersion = "4.0.0"
-val lifecycleVersion = "2.6.1"
+val lifecycleVersion = "2.6.2"
 dependencies {
 
     implementation("androidx.core:core-ktx:1.9.0")
@@ -50,8 +50,12 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.core:core-ktx:+")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
-    implementation("androidx.lifecycle:lifecycle-extensions-ktx:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
+
+    implementation("androidx.activity:activity-ktx:1.7.2")
+    implementation("androidx.fragment:fragment-ktx:1.6.1")
+    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${lifecycleVersion}")
+    runtimeOnly("androidx.lifecycle:lifecycle-runtime-ktx:${lifecycleVersion}")
 
     implementation("io.hyphenate:hyphenate-chat:${hyphenateVersion}")
 

@@ -31,7 +31,13 @@
         tools:targetApi="31">
         <activity
             android:name=".ui.UserInfoActivity"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <!-- 声明 SDK 所需的 service 的核心功能 -->
         <service
             android:name="com.hyphenate.chat.EMChatService"
@@ -47,11 +53,7 @@
         <activity
             android:name=".ui.LoginActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.SingleChatActivity"

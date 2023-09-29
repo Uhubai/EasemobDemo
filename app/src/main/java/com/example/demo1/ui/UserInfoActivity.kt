@@ -17,10 +17,7 @@ class UserInfoActivity : AppCompatActivity(), Observer<User> {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewBinding = DataBindingUtil.setContentView(
-            this,
-            R.layout.activity_user_info
-        )
+        viewBinding = DataBindingUtil.setContentView(this, R.layout.activity_user_info)
 
         viewBinding.vm = userInfoViewModel
         userInfoViewModel.userInfo.observe(this, this)

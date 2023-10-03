@@ -1,5 +1,6 @@
 package com.example.demo1.adapter
 
+import android.content.Intent
 import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demo1.databinding.ItemPageOneBinding
 import com.example.demo1.model.ChatListItem
+import com.example.demo1.ui.SingleChatActivity
 import com.hyphenate.EMMessageListener
 import com.hyphenate.chat.EMClient
 import com.hyphenate.chat.EMMessage
@@ -47,6 +49,13 @@ object OnePageRecyclerAdapter : RecyclerView.Adapter<OnePageRecyclerAdapter.Hold
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.itemTxt?.text = chatList[position].chatName
         holder.itemImage?.setImageURI(Uri.parse(chatList[position].imageSrc))
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent()
+            intent.setClass(holder.itemView.context, SingleChatActivity::class.java)
+            intent.putExtra("conversationId", chatList[position].conversationId)
+            holder.itemView.context.startActivity(intent)
+        }
     }
 
     class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {

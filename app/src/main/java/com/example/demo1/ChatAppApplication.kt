@@ -45,6 +45,8 @@ class ChatAppApplication : Application() {
         // 注册消息监听
         EMClient.getInstance().chatManager().addMessageListener(msgListener)
 
+//        var contactsFromServer = EMClient.getInstance().contactManager().allContactsFromServer
+
         EMClient.getInstance().chatManager().allConversations.forEach {
             OnePageRecyclerAdapter.addChatItem(ChatListItem(it.value.lastMessage))
         }

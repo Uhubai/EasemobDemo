@@ -1,6 +1,9 @@
 package com.example.demo1.adapter
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -33,12 +36,31 @@ class MyViewPage2Adapter(private val pagesViewModel: PagesViewModel) :
         return PageHolder(pageOneBinding.root)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun createTwoHolder(parent: ViewGroup): PageHolder {
         val pageTwoBinding: ActivityPageTwoBinding =
             DataBindingUtil.inflate<ActivityPageTwoBinding>(
                 LayoutInflater.from(parent.context), R.layout.activity_page_two, parent, false
             ).apply { pageVM = pagesViewModel }
+        pageTwoBinding.newFriend.setOnTouchListener(touchListener)
+        pageTwoBinding.chatGroup.setOnTouchListener(touchListener)
+        pageTwoBinding.newFriend.setOnClickListener {
+            // TODO 添加朋友
+        }
+        pageTwoBinding.chatGroup.setOnClickListener {
+            // TODO 群聊列表
+        }
         return PageHolder(pageTwoBinding.root)
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private val touchListener = View.OnTouchListener { v, event ->
+        if (event?.action == MotionEvent.ACTION_DOWN) {
+            v?.setBackgroundColor(Color.LTGRAY)
+        } else {
+            v?.setBackgroundColor(Color.WHITE)
+        }
+        false
     }
 
     private fun createThreeHolder(parent: ViewGroup): PageHolder {

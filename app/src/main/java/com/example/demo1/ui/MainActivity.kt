@@ -49,17 +49,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun initView() {
         viewBinding.imageHome.setOnClickListener {
-            viewBinding.viewPages.currentItem = HOME_PAGE
+            viewBinding.viewPages.setCurrentItem(HOME_PAGE, false)
             cleanIcon()
             viewBinding.imageHome.setImageResource(R.drawable.home48_miss)
         }
         viewBinding.imageContacter.setOnClickListener {
-            viewBinding.viewPages.currentItem = CONTACTER_PAGE
+            viewBinding.viewPages.setCurrentItem(CONTACTER_PAGE, false)
+
             cleanIcon()
             viewBinding.imageContacter.setImageResource(R.drawable.contacter48_miss)
         }
         viewBinding.imageSetting.setOnClickListener {
-            viewBinding.viewPages.currentItem = SETTING_PAGE
+            viewBinding.viewPages.setCurrentItem(SETTING_PAGE, false)
             cleanIcon()
             viewBinding.imageSetting.setImageResource(R.drawable.setting48_miss)
         }

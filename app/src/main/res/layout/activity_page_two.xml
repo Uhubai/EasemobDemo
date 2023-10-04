@@ -21,9 +21,9 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_marginStart="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
                 android:src="@drawable/new_friend48" />
 
             <TextView
@@ -63,11 +63,11 @@
         </LinearLayout>
 
         <TextView
-            android:paddingStart="15dp"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:background="@color/contact_back"
             android:gravity="center_vertical"
+            android:paddingStart="15dp"
             android:text="@string/my_friend" />
 
         <androidx.recyclerview.widget.RecyclerView

@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demo1.R
 import com.example.demo1.databinding.ActivityPageOneBinding
 import com.example.demo1.databinding.ActivityPageThreeBinding
 import com.example.demo1.databinding.ActivityPageTwoBinding
+import com.example.demo1.ui.CustomDividerItemDecoration
 import com.example.demo1.viewmodel.PagesViewModel
 
 class MyViewPage2Adapter(private val pagesViewModel: PagesViewModel) :
@@ -42,6 +44,9 @@ class MyViewPage2Adapter(private val pagesViewModel: PagesViewModel) :
             DataBindingUtil.inflate<ActivityPageTwoBinding>(
                 LayoutInflater.from(parent.context), R.layout.activity_page_two, parent, false
             ).apply { pageVM = pagesViewModel }
+        val dividerDrawable = ContextCompat.getDrawable(parent.context, R.drawable.divider)
+        val dividerItemDecoration = CustomDividerItemDecoration(dividerDrawable!!)
+        pageTwoBinding.pageTwoRecycler.addItemDecoration(dividerItemDecoration)
         pageTwoBinding.newFriend.setOnTouchListener(touchListener)
         pageTwoBinding.chatGroup.setOnTouchListener(touchListener)
         pageTwoBinding.newFriend.setOnClickListener {

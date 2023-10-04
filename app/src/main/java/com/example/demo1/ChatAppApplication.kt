@@ -1,6 +1,7 @@
 package com.example.demo1
 
 import android.app.Application
+import android.content.Context
 import android.util.Log
 import com.example.demo1.adapter.OnePageRecyclerAdapter
 import com.example.demo1.adapter.TwoPageRecyclerAdapter
@@ -18,6 +19,7 @@ class ChatAppApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        ChatAppApplication.applicationContext = applicationContext
         init()
     }
 
@@ -76,5 +78,6 @@ class ChatAppApplication : Application() {
 
     companion object {
         private const val TAG = "ChatAppApplication"
+        var applicationContext: Context? = null
     }
 }

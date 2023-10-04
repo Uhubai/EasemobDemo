@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/imageHead"
@@ -11,10 +11,12 @@
         android:background="@drawable/item_circle_image_view" />
 
     <TextView
-        android:layout_gravity="center"
         android:id="@+id/txtMsg"
-        android:background="@drawable/item_chat_left"
-        android:minWidth="50dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/item_chat_left"
+        android:gravity="center_vertical"
+        android:minWidth="50dp"
+        android:paddingStart="25dp" />
 </LinearLayout>

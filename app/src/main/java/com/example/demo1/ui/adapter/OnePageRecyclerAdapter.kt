@@ -1,4 +1,4 @@
-package com.example.demo1.adapter
+package com.example.demo1.ui.adapter
 
 import android.content.Intent
 import android.net.Uri

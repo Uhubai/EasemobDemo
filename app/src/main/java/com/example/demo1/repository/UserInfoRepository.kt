@@ -6,7 +6,7 @@ import com.example.demo1.model.User
 import com.example.demo1.util.eMUserToUser
 import com.example.demo1.util.publishToast
 import com.example.demo1.util.userToEmUser
-import com.example.demo1.viewmodel.UserInfoViewModel
+import com.example.demo1.ui.viewmodel.UserInfoViewModel
 import com.hyphenate.EMValueCallBack
 import com.hyphenate.chat.EMClient
 import com.hyphenate.chat.EMUserInfo

@@ -1,8 +1,8 @@
-package com.example.demo1.viewmodel
+package com.example.demo1.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.example.demo1.adapter.OnePageRecyclerAdapter
-import com.example.demo1.adapter.TwoPageRecyclerAdapter
+import com.example.demo1.ui.adapter.OnePageRecyclerAdapter
+import com.example.demo1.ui.adapter.TwoPageRecyclerAdapter
 
 class PagesViewModel : ViewModel() {
     val onePageRecyclerAdapter = OnePageRecyclerAdapter

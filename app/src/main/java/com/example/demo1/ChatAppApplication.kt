@@ -3,8 +3,8 @@ package com.example.demo1
 import android.app.Application
 import android.content.Context
 import android.util.Log
-import com.example.demo1.adapter.OnePageRecyclerAdapter
-import com.example.demo1.adapter.TwoPageRecyclerAdapter
+import com.example.demo1.ui.adapter.OnePageRecyclerAdapter
+import com.example.demo1.ui.adapter.TwoPageRecyclerAdapter
 import com.example.demo1.model.ChatListItem
 import com.hyphenate.EMCallBack
 import com.hyphenate.EMValueCallBack

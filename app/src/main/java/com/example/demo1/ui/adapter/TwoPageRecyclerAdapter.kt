@@ -1,4 +1,4 @@
-package com.example.demo1.adapter
+package com.example.demo1.ui.adapter
 
 import android.annotation.SuppressLint
 import android.content.Intent

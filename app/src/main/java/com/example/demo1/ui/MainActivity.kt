@@ -6,9 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.demo1.R
-import com.example.demo1.adapter.MyViewPage2Adapter
+import com.example.demo1.ui.adapter.MyViewPage2Adapter
 import com.example.demo1.databinding.ActivityMainBinding
-import com.example.demo1.viewmodel.PagesViewModel
+import com.example.demo1.ui.viewmodel.PagesViewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityMainBinding

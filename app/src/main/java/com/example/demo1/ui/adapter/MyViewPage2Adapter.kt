@@ -1,4 +1,4 @@
-package com.example.demo1.adapter
+package com.example.demo1.ui.adapter
 
 import android.annotation.SuppressLint
 import android.graphics.Color
@@ -14,7 +14,7 @@ import com.example.demo1.databinding.ActivityPageOneBinding
 import com.example.demo1.databinding.ActivityPageThreeBinding
 import com.example.demo1.databinding.ActivityPageTwoBinding
 import com.example.demo1.ui.CustomDividerItemDecoration
-import com.example.demo1.viewmodel.PagesViewModel
+import com.example.demo1.ui.viewmodel.PagesViewModel
 
 class MyViewPage2Adapter(private val pagesViewModel: PagesViewModel) :
     RecyclerView.Adapter<MyViewPage2Adapter.PageHolder>() {

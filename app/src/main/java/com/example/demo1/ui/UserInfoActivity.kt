@@ -11,7 +11,7 @@ import com.example.demo1.R
 import com.example.demo1.databinding.ActivityUserInfoBinding
 import com.example.demo1.model.User
 import com.example.demo1.repository.UserInfoRepository
-import com.example.demo1.viewmodel.UserInfoViewModel
+import com.example.demo1.ui.viewmodel.UserInfoViewModel
 
 class UserInfoActivity : AppCompatActivity(), Observer<User> {
     private val userInfoViewModel: UserInfoViewModel by viewModels<UserInfoViewModel>()

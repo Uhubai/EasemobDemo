@@ -6,7 +6,7 @@
 
         <variable
             name="pageVM"
-            type="com.example.demo1.viewmodel.PagesViewModel" />
+            type="com.example.demo1.ui.viewmodel.PagesViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

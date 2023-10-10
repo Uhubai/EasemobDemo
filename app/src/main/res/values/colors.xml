@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="lt_gray">#FFCCCCCC</color>
     <color name="contact_back">#E6E5E5</color>
+    <color name="toolbar_back">#E6E5E5</color>
 </resources>

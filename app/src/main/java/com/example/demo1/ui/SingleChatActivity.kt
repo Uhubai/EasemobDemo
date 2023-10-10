@@ -30,6 +30,11 @@ class SingleChatActivity : AppCompatActivity() {
         )
         binding.messageList.adapter = chatPageRecyclerAdapter
         binding.messageList.layoutManager = LinearLayoutManager(this)
+
+        setSupportActionBar(binding.toolbarChat)
+        supportActionBar?.title = "测试111"
+        supportActionBar?.subtitle = "测试"
+
         binding.btnSend.setOnClickListener {
             binding.editMessage.text.toString().apply {
                 val emMessage = EMMessage.createTextSendMessage(this, conversationId).apply {

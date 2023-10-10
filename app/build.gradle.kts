@@ -30,6 +30,7 @@ android {
     buildFeatures {
         viewBinding = true
         dataBinding = true
+        aidl = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -41,6 +42,7 @@ android {
 }
 
 val hyphenateVersion = "4.0.0"
+val agoraRtcVersion = "4.0.0"
 val lifecycleVersion = "2.6.2"
 dependencies {
 
@@ -59,6 +61,7 @@ dependencies {
     runtimeOnly("androidx.lifecycle:lifecycle-runtime-ktx:${lifecycleVersion}")
 
     implementation("io.hyphenate:hyphenate-chat:${hyphenateVersion}")
+    implementation("io.agora.rtc:full-sdk:4.0.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

@@ -3,9 +3,7 @@ package com.example.demo1.ui.call
 import android.Manifest
 import android.content.pm.PackageManager
 import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.AttributeSet
 import android.view.Gravity
 import android.view.SurfaceView
 import android.widget.FrameLayout

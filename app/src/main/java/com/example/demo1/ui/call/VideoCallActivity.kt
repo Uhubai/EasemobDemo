@@ -2,7 +2,6 @@ package com.example.demo1.ui.call
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.graphics.Color
 import android.os.Bundle
 import android.view.Gravity
 import android.view.SurfaceView
@@ -12,7 +11,7 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.toDrawable
+import com.example.demo1.R
 import com.example.demo1.databinding.ActivityVideoCallBinding
 import io.agora.rtc2.ChannelMediaOptions
 import io.agora.rtc2.Constants
@@ -38,12 +37,15 @@ class VideoCallActivity : AppCompatActivity() {
     private var mRtcEngine: RtcEngine? = null
 
     private val imageView by lazy { ImageView(baseContext).apply {
-        background = Color.BLACK.toDrawable()
+        setImageResource(R.drawable.reject_call)
+        setOnClickListener{
+            finish()
+        }
     } }
     private val imageLayoutParams: LayoutParams by lazy {
-        LayoutParams(100, 100).apply {
+        LayoutParams(200, 200).apply {
             gravity = Gravity.BOTTOM+Gravity.CENTER_HORIZONTAL
-            bottomMargin = 100
+            bottomMargin = 200
         }
     }
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">demo1</string>
+    <string name="app_name">ChatApp</string>
     <string name="app_key">1157230828175899#demo</string>
     <string name="edit_username">请输入用户账号</string>
     <string name="edit_password">请输入用户密码</string>

@@ -19,6 +19,13 @@
             android:layout_marginStart="16dp"
             android:layout_gravity="center_vertical|start"
             android:text="Welcome to the Agora Voice Call channel."/>
-
+        <ImageView
+            android:id="@+id/btnAudioReject"
+            android:layout_width="200px"
+            android:layout_height="200px"
+            android:src="@drawable/reject_call"
+            android:layout_marginBottom="200px"
+            android:layout_gravity="center_horizontal|bottom"
+            />
     </FrameLayout>
 </RelativeLayout>

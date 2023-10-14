@@ -3,10 +3,14 @@ package com.example.demo1.ui.call
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.view.Gravity
+import android.widget.FrameLayout
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.example.demo1.databinding.ActivityVideoCallBinding
+import com.example.demo1.R
+import com.example.demo1.databinding.ActivityAudioCallBinding
 import io.agora.rtc2.ChannelMediaOptions
 import io.agora.rtc2.Constants
 import io.agora.rtc2.IRtcEngineEventHandler
@@ -15,7 +19,7 @@ import io.agora.rtc2.RtcEngineConfig
 
 
 class AudioCallActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityVideoCallBinding
+    private lateinit var binding: ActivityAudioCallBinding
 
     // 填写项目的 App ID，可在声网控制台中生成
     private val appId = "038147ad0b414ae4b4051c6104ffa7b4"
@@ -24,22 +28,32 @@ class AudioCallActivity : AppCompatActivity() {
     private val channelName = "test01"
 
     // 填写声网控制台中生成的临时 Token
-    private val token = "007eJxTYJiw8n1D7OTbPb+UJueGLysX9uL86/Nl9pk7fZP/RK4Tt2lVYDAwtjA0MU9MMUgyMTRJTDVJMjEwNUw2MzQwSUtLNE8yUZygltoQyMjQcUaEmZEBAkF8NoaS1OISA0MGBgACiSCd"
+    private val token =
+        "007eJxTYJiw8n1D7OTbPb+UJueGLysX9uL86/Nl9pk7fZP/RK4Tt2lVYDAwtjA0MU9MMUgyMTRJTDVJMjEwNUw2MzQwSUtLNE8yUZygltoQyMjQcUaEmZEBAkF8NoaS1OISA0MGBgACiSCd"
 
     private var mRtcEngine: RtcEngine? = null
 
     private val mRtcEventHandler: IRtcEngineEventHandler = object : IRtcEngineEventHandler() {
         // 监听频道内的远端主播，获取主播的 uid 信息
-        override fun onUserJoined(uid: Int, elapsed: Int) {}
+        override fun onUserJoined(uid: Int, elapsed: Int) {
+
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityVideoCallBinding.inflate(layoutInflater)
+        binding = ActivityAudioCallBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        initView()
         // 如果已经授权，则初始化 RtcEngine 并加入频道
         if (checkSelfPermission(Manifest.permission.RECORD_AUDIO, PERMISSION_REQ_ID)) {
             initializeAndJoinChannel();
+        }
+    }
+
+    private fun initView() {
+        binding.btnAudioReject.setOnClickListener {
+            finish()
         }
     }
 

@@ -49,7 +49,10 @@ class LoginActivity : AppCompatActivity() {
 
     inner class LoginCallBack : EMCallBack {
         override fun onSuccess() {
-            startActivity(Intent(baseContext,SingleChatActivity::class.java))
+            val intent = Intent(baseContext,SingleChatActivity::class.java).apply {
+                putExtra("fromLogin",true)
+            }
+            startActivity(intent)
         }
 
         override fun onError(code: Int, error: String?) {

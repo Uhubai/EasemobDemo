@@ -14,9 +14,13 @@ import com.example.demo1.databinding.ActivityPageOneBinding
 import com.example.demo1.databinding.ActivityPageThreeBinding
 import com.example.demo1.databinding.ActivityPageTwoBinding
 import com.example.demo1.ui.CustomDividerItemDecoration
+import com.example.demo1.ui.viewmodel.PagesViewHandler
 import com.example.demo1.ui.viewmodel.PagesViewModel
 
-class MyViewPage2Adapter(private val pagesViewModel: PagesViewModel) :
+class MyViewPage2Adapter(
+    private val pagesViewModel: PagesViewModel,
+    private val pagesViewHandler: PagesViewHandler
+) :
     RecyclerView.Adapter<MyViewPage2Adapter.PageHolder>() {
 
     inner class PageHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -34,7 +38,10 @@ class MyViewPage2Adapter(private val pagesViewModel: PagesViewModel) :
         val pageOneBinding: ActivityPageOneBinding =
             DataBindingUtil.inflate<ActivityPageOneBinding?>(
                 LayoutInflater.from(parent.context), R.layout.activity_page_one, parent, false
-            ).apply { pageVM = pagesViewModel }
+            ).apply {
+                pageVM = pagesViewModel
+
+            }
         return PageHolder(pageOneBinding.root)
     }
 
@@ -72,7 +79,10 @@ class MyViewPage2Adapter(private val pagesViewModel: PagesViewModel) :
         val pageThreeBinding: ActivityPageThreeBinding =
             DataBindingUtil.inflate<ActivityPageThreeBinding>(
                 LayoutInflater.from(parent.context), R.layout.activity_page_three, parent, false
-            ).apply { pageVM = pagesViewModel }
+            ).apply {
+                pageVM = pagesViewModel
+                handler = pagesViewHandler
+            }
         return PageHolder(pageThreeBinding.root)
     }
 

@@ -23,9 +23,9 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun initView() {
         binding.registerBtn.setOnClickListener {
-            var username = binding.editUser.text.toString()
-            var pass = binding.editPass.text.toString()
-            var passAgain = binding.editPassAgain.text.toString()
+            val username = binding.editUser.text.toString()
+            val pass = binding.editPass.text.toString()
+            val passAgain = binding.editPassAgain.text.toString()
             if (checkUserName(username) && checkPassAgain(pass, passAgain)) {
                 thread {
                     //TODO 同步方法

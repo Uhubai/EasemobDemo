@@ -1,5 +1,6 @@
 package com.example.demo1.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -8,11 +9,18 @@ import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.demo1.R
 import com.example.demo1.ui.adapter.MyViewPage2Adapter
 import com.example.demo1.databinding.ActivityMainBinding
+import com.example.demo1.ui.viewmodel.PagesViewHandler
 import com.example.demo1.ui.viewmodel.PagesViewModel
+import com.hyphenate.chat.EMClient
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityMainBinding
     private val pagesViewModel: PagesViewModel by viewModels<PagesViewModel>()
+    private val pagesViewHandler: PagesViewHandler by lazy {
+        PagesViewHandler(pagesViewModel, viewBinding)
+    }
     private val pageChangeCallback = object : OnPageChangeCallback() {
         override fun onPageSelected(position: Int) {
             cleanIcon()
@@ -28,18 +36,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        if (EMClient.getInstance().isLoggedIn.not()) {
-//            val intent = Intent()
-//            intent.setClass(this, LoginActivity::class.java)
-//            startActivity(intent)
-//        }
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
-        viewBinding.viewPages.adapter = MyViewPage2Adapter(pagesViewModel)
-        viewBinding.viewPages.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-        viewBinding.viewPages.registerOnPageChangeCallback(pageChangeCallback)
         setContentView(viewBinding.root)
         initView()
-        viewBinding.viewPages.currentItem = 1
+        initListener()
     }
 
     override fun onDestroy() {
@@ -48,6 +48,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initView() {
+        viewBinding.viewPages.adapter = MyViewPage2Adapter(pagesViewModel, pagesViewHandler)
+        viewBinding.viewPages.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        viewBinding.viewPages.registerOnPageChangeCallback(pageChangeCallback)
+        if (!intent.getBooleanExtra("fromLogin", false)) {
+            pagesViewHandler.checkLogin()
+        }
+        viewBinding.viewPages.currentItem = 0
+        pagesViewHandler.initContact()
+    }
+
+    private fun initListener() {
         viewBinding.imageHome.setOnClickListener {
             viewBinding.viewPages.setCurrentItem(HOME_PAGE, false)
             cleanIcon()
@@ -55,7 +66,6 @@ class MainActivity : AppCompatActivity() {
         }
         viewBinding.imageContacter.setOnClickListener {
             viewBinding.viewPages.setCurrentItem(CONTACTER_PAGE, false)
-
             cleanIcon()
             viewBinding.imageContacter.setImageResource(R.drawable.contacter48_miss)
         }

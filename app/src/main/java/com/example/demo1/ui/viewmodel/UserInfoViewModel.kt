@@ -12,39 +12,6 @@ object UserInfoViewModel : ViewModel() {
     var isCurrent = false
     var userInfo = MutableLiveData<User>()
 
-
-    fun getUserInfoT(): User {
-        val user = User().apply {
-            userId = EMClient.getInstance().currentUser
-            nickname = "easemob"
-            avatarUrl = "https://www.easemob.com"
-            birth = "2000.10.10"
-            signature = "hello world"
-            phoneNumber = "13333333333"
-            email = "123456@qq.com"
-            gender = 1
-        }
-        val emUserInfo = EMUserInfo().apply {
-            userToEmUser(user)
-        }
-
-        userInfo.postValue(user)
-        return user
-    }
-
-    fun updateUserInfo() {
-        userInfo.postValue(User().apply {
-            userId = EMClient.getInstance().currentUser
-            nickname = "easemob"
-            avatarUrl = "https://www.easemob.com"
-            birth = "2000.10.10"
-            signature = "hello world"
-            phoneNumber = "13333333333"
-            email = "123456@qq.com"
-            gender = 1
-        })
-    }
-
     private const val TAG = "UserInfoViewModel"
 
 }

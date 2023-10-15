@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityMainBinding
     private val pagesViewModel: PagesViewModel by viewModels<PagesViewModel>()
     private val pagesViewHandler: PagesViewHandler by lazy {
-        PagesViewHandler(pagesViewModel, viewBinding)
+        PagesViewHandler(pagesViewModel, this)
     }
     private val pageChangeCallback = object : OnPageChangeCallback() {
         override fun onPageSelected(position: Int) {

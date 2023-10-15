@@ -1,6 +1,7 @@
 package com.example.demo1.ui
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -25,6 +26,7 @@ class UserInfoActivity : AppCompatActivity(), Observer<User> {
         viewBinding.vm = userInfoViewModel
         userInfoViewModel.userInfo.observe(this, this)
         UserInfoRepository.query(userId)
+        initListener()
     }
 
     @SuppressLint("SetTextI18n")
@@ -35,5 +37,16 @@ class UserInfoActivity : AppCompatActivity(), Observer<User> {
         viewBinding.txtGender.text = "性别: ${newData.getGenderStr()}"
         viewBinding.txtPhone.text = "电话: ${newData.phoneNumber}"
         viewBinding.txtSignature.text = "签名: ${newData.signature}"
+    }
+    private fun initListener(){
+        viewBinding.btnSendMsg.setOnClickListener {
+            val intent = Intent(this,SingleChatActivity::class.java).apply {
+                putExtra("conversationId",userId)
+            }
+            startActivity(intent)
+        }
+        viewBinding.btnCallOptions.setOnClickListener {
+            // TODO 发起视频或者语音通话
+        }
     }
 }

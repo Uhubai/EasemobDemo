@@ -31,6 +31,11 @@ object OnePageRecyclerAdapter : RecyclerView.Adapter<OnePageRecyclerAdapter.Hold
             notifyItemChanged(chatList.size - 1)
         }
     }
+    fun clear(){
+        chatList.clear()
+        conversationIdSet.clear()
+        notifyDataSetChanged()
+    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {

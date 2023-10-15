@@ -12,4 +12,6 @@
     <string name="chat_group">群聊</string>
     <string name="my_friend">我的朋友</string>
     <string name="btn_setting_logout">登出</string>
+    <string name="txt_send_msg">发消息</string>
+    <string name="txt_call_options">音视频通话</string>
 </resources>

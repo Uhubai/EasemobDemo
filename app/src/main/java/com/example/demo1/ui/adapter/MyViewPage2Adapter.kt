@@ -40,7 +40,6 @@ class MyViewPage2Adapter(
                 LayoutInflater.from(parent.context), R.layout.activity_page_one, parent, false
             ).apply {
                 pageVM = pagesViewModel
-
             }
         return PageHolder(pageOneBinding.root)
     }

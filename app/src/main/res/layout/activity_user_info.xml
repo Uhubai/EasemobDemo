@@ -77,6 +77,26 @@
             android:text='@{"签名："+vm.userInfo.signature}'
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btnCallOptions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="72dp"
+            android:text="@string/txt_call_options"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btnSendMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:text="@string/txt_send_msg"
+            app:layout_constraintBottom_toTopOf="@+id/btnCallOptions"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

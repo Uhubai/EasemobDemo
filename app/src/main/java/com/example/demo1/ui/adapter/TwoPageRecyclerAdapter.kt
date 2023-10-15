@@ -48,6 +48,10 @@ object TwoPageRecyclerAdapter : RecyclerView.Adapter<TwoPageRecyclerAdapter.Hold
         contacts.add(userInfo)
         notifyItemChanged(contacts.size)
     }
+    fun clear(){
+        contacts.clear()
+        notifyDataSetChanged()
+    }
 
     class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imageView: ImageView? = null

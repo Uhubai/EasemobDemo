@@ -1,8 +1,10 @@
 package com.example.demo1.ui.viewmodel
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import androidx.core.view.ContentInfoCompat.Flags
 import com.example.demo1.ChatAppApplication
 import com.example.demo1.databinding.ActivityMainBinding
 import com.example.demo1.model.ChatListItem
@@ -19,18 +21,15 @@ import kotlin.math.log
 
 class PagesViewHandler(
     private val pagesViewModel: PagesViewModel,
-    private val activityMainBinding: ActivityMainBinding
+    private val activity: Activity
 ) {
-    private val context: Context by lazy {
-        activityMainBinding.root.context
-    }
 
     @OptIn(DelicateCoroutinesApi::class)
     fun checkLogin() {
         pagesViewModel.coroutineScope.launch {
             delay(500L)
             if (EMClient.getInstance().isLoggedIn.not()) {
-                ToastUtil.showShootToast(context, "登录超时")
+                ToastUtil.showShootToast(activity, "登录超时")
                 toLogin()
             }
         }
@@ -38,17 +37,20 @@ class PagesViewHandler(
 
     private fun toLogin() {
         val intent = Intent()
-        intent.setClass(activityMainBinding.root.context, LoginActivity::class.java)
-        context.startActivity(intent)
+        intent.setClass(activity, LoginActivity::class.java)
+        activity.startActivity(intent)
+        activity.finish()
     }
 
     fun logout() {
         Log.i(TAG, "logout--")
         EMClient.getInstance().logout(true)
+        OnePageRecyclerAdapter.clear()
+        TwoPageRecyclerAdapter.clear()
         toLogin()
     }
 
-    fun initConversation(){
+    fun initConversation() {
         EMClient.getInstance().chatManager().allConversations.forEach {
             OnePageRecyclerAdapter.addChatItem(ChatListItem(it.value.lastMessage))
         }
@@ -63,7 +65,9 @@ class PagesViewHandler(
                 }
 
                 override fun onError(error: Int, errorMsg: String?) {
-                    Log.e(TAG, "[asyncGetAllContactsFromServer] Error: code is $error, msg is $errorMsg.",
+                    Log.e(
+                        TAG,
+                        "[asyncGetAllContactsFromServer] Error: code is $error, msg is $errorMsg.",
                     )
                 }
 

@@ -53,7 +53,7 @@ class SingleChatActivity : AppCompatActivity() {
         conversation = EMClient.getInstance().chatManager().getConversation(conversationId)
         chatPageRecyclerAdapter = ChatPageRecyclerAdapter()
         val allMsgCount =
-            EMClient.getInstance().chatManager().getConversation(conversationId).allMsgCount
+            conversation?.allMsgCount ?: 0
         Log.i(TAG, "allMsgCount: $allMsgCount")
         if (allMsgCount != 0) {
             latestMessage = conversation!!.allMessages[0]
@@ -95,12 +95,14 @@ class SingleChatActivity : AppCompatActivity() {
     }
 
     private fun initMoreMessageHistory() {
-        chatPageRecyclerAdapter.addMessagesHEAD(
-            conversation!!.loadMoreMsgFromDB(
-                latestMessage!!.msgId, 10
+        conversation?.run {
+            chatPageRecyclerAdapter.addMessagesHEAD(
+                loadMoreMsgFromDB(
+                    latestMessage!!.msgId, 10
+                )
             )
-        )
-        latestMessage = chatPageRecyclerAdapter.emMessages.first()
+            latestMessage = chatPageRecyclerAdapter.emMessages.first()
+        }
     }
 
     private class ChatPageEMMessageListener(
@@ -114,7 +116,7 @@ class SingleChatActivity : AppCompatActivity() {
             runBlocking(Dispatchers.Default) {
                 messages?.forEach {
                     if (conversationId == it.conversationId()) {
-                        withContext(Dispatchers.Main){
+                        withContext(Dispatchers.Main) {
                             adapter.addMessageBack(it)
                         }
                     }

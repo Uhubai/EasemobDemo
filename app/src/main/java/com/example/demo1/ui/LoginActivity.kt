@@ -36,7 +36,6 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-
     override fun onDestroy() {
         val sharedPreferences = getSharedPreferences("user", MODE_PRIVATE)
         sharedPreferences.edit().clear().apply()
@@ -46,10 +45,11 @@ class LoginActivity : AppCompatActivity() {
 
     inner class LoginCallBack : EMCallBack {
         override fun onSuccess() {
-            val intent = Intent(baseContext,SingleChatActivity::class.java).apply {
+            val intent = Intent(baseContext,MainActivity::class.java).apply {
                 putExtra("fromLogin",true)
             }
             startActivity(intent)
+            finish()
         }
 
         override fun onError(code: Int, error: String?) {

@@ -41,7 +41,7 @@ android {
     }
 }
 
-val hyphenateVersion = "4.0.0"
+val hyphenateVersion = "4.0.3"
 val agoraRtcVersion = "4.2.2"
 val lifecycleVersion = "2.6.2"
 dependencies {

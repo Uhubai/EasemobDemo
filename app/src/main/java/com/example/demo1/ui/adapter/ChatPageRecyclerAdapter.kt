@@ -14,9 +14,9 @@ import com.hyphenate.chat.EMMessage
 import com.hyphenate.chat.EMMessage.Direct
 import com.hyphenate.chat.EMUserInfo
 
-class ChatPageRecyclerAdapter(val emMessages: MutableList<EMMessage>) :
+class ChatPageRecyclerAdapter :
     RecyclerView.Adapter<ChatPageRecyclerAdapter.Holder>() {
-
+    val emMessages: ArrayDeque<EMMessage> = ArrayDeque<EMMessage>()
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imageView: ImageView? = null
         var textMsg: TextView? = null
@@ -45,7 +45,7 @@ class ChatPageRecyclerAdapter(val emMessages: MutableList<EMMessage>) :
     }
 
     private fun getUserById(str: String): EMUserInfo? {
-        var emUserInfo: EMUserInfo? = null
+        val emUserInfo: EMUserInfo? = null
         EMClient.getInstance().userInfoManager()
             .fetchUserInfoByUserId(arrayOf(str), object : EMValueCallBack<Map<String, EMUserInfo>> {
                 override fun onSuccess(value: Map<String, EMUserInfo>?) {
@@ -69,13 +69,40 @@ class ChatPageRecyclerAdapter(val emMessages: MutableList<EMMessage>) :
         }
     }
 
-    fun addMessage(message: EMMessage) {
+    fun addMessageBack(message: EMMessage) {
         emMessages.apply {
             add(message)
             Log.i(TAG, "addMessage: ${message.direct()}")
             notifyItemChanged(size)
         }
     }
+
+    fun addMessageHEAD(message: EMMessage) {
+        emMessages.apply {
+            addFirst(message)
+            Log.i(TAG, "addMessage: ${message.direct()}")
+            notifyItemChanged(size)
+        }
+    }
+
+    fun addMessagesBack(messages: List<EMMessage>) {
+        emMessages.apply {
+            emMessages.addAll(messages)
+            Log.i(TAG, "addMessages: ${messages.size}")
+            notifyItemChanged(size)
+        }
+    }
+
+    fun addMessagesHEAD(messages: List<EMMessage>) {
+        emMessages.apply {
+            messages.asReversed().forEach {
+                addFirst(it)
+            }
+            Log.i(TAG, "addMessages: ${messages.size}")
+            notifyItemChanged(size)
+        }
+    }
+
 
     companion object {
         private const val TAG = "ChatPageRecyclerAdapter"

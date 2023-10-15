@@ -5,7 +5,9 @@ import android.content.Intent
 import android.util.Log
 import com.example.demo1.ChatAppApplication
 import com.example.demo1.databinding.ActivityMainBinding
+import com.example.demo1.model.ChatListItem
 import com.example.demo1.ui.LoginActivity
+import com.example.demo1.ui.adapter.OnePageRecyclerAdapter
 import com.example.demo1.ui.adapter.TwoPageRecyclerAdapter
 import com.example.demo1.util.ToastUtil
 import com.hyphenate.EMValueCallBack
@@ -44,6 +46,12 @@ class PagesViewHandler(
         Log.i(TAG, "logout--")
         EMClient.getInstance().logout(true)
         toLogin()
+    }
+
+    fun initConversation(){
+        EMClient.getInstance().chatManager().allConversations.forEach {
+            OnePageRecyclerAdapter.addChatItem(ChatListItem(it.value.lastMessage))
+        }
     }
 
     fun initContact() {

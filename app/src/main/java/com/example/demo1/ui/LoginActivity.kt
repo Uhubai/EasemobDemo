@@ -1,16 +1,13 @@
 package com.example.demo1.ui
 
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.example.demo1.R
 import com.example.demo1.databinding.ActivityLoginBinding
 import com.example.demo1.util.checkUserName
 import com.hyphenate.EMCallBack
 import com.hyphenate.chat.EMClient
-import kotlin.math.log
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding

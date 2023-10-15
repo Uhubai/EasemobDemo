@@ -55,6 +55,7 @@ class MainActivity : AppCompatActivity() {
             pagesViewHandler.checkLogin()
         }
         viewBinding.viewPages.currentItem = 0
+        pagesViewHandler.initConversation()
         pagesViewHandler.initContact()
     }
 

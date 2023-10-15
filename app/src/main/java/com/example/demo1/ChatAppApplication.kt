@@ -4,10 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.util.Log
 import com.example.demo1.ui.adapter.OnePageRecyclerAdapter
-import com.example.demo1.ui.adapter.TwoPageRecyclerAdapter
 import com.example.demo1.model.ChatListItem
-import com.hyphenate.EMCallBack
-import com.hyphenate.EMValueCallBack
 import com.hyphenate.chat.EMClient
 import com.hyphenate.chat.EMOptions
 
@@ -19,7 +16,7 @@ class ChatAppApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        ChatAppApplication.applicationContext = applicationContext
+        ChatAppApplication.applicationContext = this
         init()
     }
 
@@ -37,9 +34,6 @@ class ChatAppApplication : Application() {
         // 注册消息监听
         EMClient.getInstance().chatManager().addMessageListener(msgListener)
 
-        EMClient.getInstance().chatManager().allConversations.forEach {
-            OnePageRecyclerAdapter.addChatItem(ChatListItem(it.value.lastMessage))
-        }
         Log.i(TAG, "init: OK")
     }
 

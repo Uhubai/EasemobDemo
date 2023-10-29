@@ -20,8 +20,8 @@
             android:id="@+id/imageView"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:background="@drawable/info_circle_image_view"
             android:layout_marginTop="72dp"
+            android:background="@drawable/info_circle_image_view"
             android:src="@drawable/ic_launcher_foreground"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -78,21 +78,25 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <Button
+        <TextView
             android:id="@+id/btnCallOptions"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="72dp"
+            android:layout_width="125dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="50dp"
+            android:background="@color/lt_gray"
+            android:gravity="center"
             android:text="@string/txt_call_options"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <Button
+        <TextView
             android:id="@+id/btnSendMsg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="125dp"
+            android:layout_height="50dp"
             android:layout_marginBottom="25dp"
+            android:background="@color/lt_gray"
+            android:gravity="center"
             android:text="@string/txt_send_msg"
             app:layout_constraintBottom_toTopOf="@+id/btnCallOptions"
             app:layout_constraintEnd_toEndOf="parent"

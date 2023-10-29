@@ -12,6 +12,7 @@ import com.example.demo1.R
 import com.example.demo1.databinding.ActivityUserInfoBinding
 import com.example.demo1.model.User
 import com.example.demo1.repository.UserInfoRepository
+import com.example.demo1.ui.call.VideoCallActivity
 import com.example.demo1.ui.viewmodel.UserInfoViewModel
 
 class UserInfoActivity : AppCompatActivity(), Observer<User> {
@@ -47,6 +48,10 @@ class UserInfoActivity : AppCompatActivity(), Observer<User> {
         }
         viewBinding.btnCallOptions.setOnClickListener {
             // TODO 发起视频或者语音通话
+            val intent = Intent(this,VideoCallActivity::class.java).apply {
+                putExtra("id",userId)
+            }
+            startActivity(intent)
         }
     }
 }

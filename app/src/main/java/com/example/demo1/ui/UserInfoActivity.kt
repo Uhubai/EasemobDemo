@@ -14,6 +14,7 @@ import com.example.demo1.model.User
 import com.example.demo1.repository.UserInfoRepository
 import com.example.demo1.ui.call.VideoCallActivity
 import com.example.demo1.ui.viewmodel.UserInfoViewModel
+import com.hyphenate.chat.EMClient
 
 class UserInfoActivity : AppCompatActivity(), Observer<User> {
     private val userInfoViewModel: UserInfoViewModel by viewModels<UserInfoViewModel>()
@@ -39,17 +40,18 @@ class UserInfoActivity : AppCompatActivity(), Observer<User> {
         viewBinding.txtPhone.text = "电话: ${newData.phoneNumber}"
         viewBinding.txtSignature.text = "签名: ${newData.signature}"
     }
-    private fun initListener(){
+
+    private fun initListener() {
         viewBinding.btnSendMsg.setOnClickListener {
-            val intent = Intent(this,SingleChatActivity::class.java).apply {
-                putExtra("conversationId",userId)
+            val intent = Intent(this, SingleChatActivity::class.java).apply {
+                putExtra("conversationId", userId)
             }
             startActivity(intent)
         }
         viewBinding.btnCallOptions.setOnClickListener {
             // TODO 发起视频或者语音通话
-            val intent = Intent(this,VideoCallActivity::class.java).apply {
-                putExtra("id",userId)
+            val intent = Intent(this, VideoCallActivity::class.java).apply {
+                putExtra("channelName", EMClient.getInstance().currentUser + userId)
             }
             startActivity(intent)
         }

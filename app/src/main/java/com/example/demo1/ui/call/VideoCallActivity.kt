@@ -3,16 +3,19 @@ package com.example.demo1.ui.call
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.SurfaceView
 import android.widget.FrameLayout
 import android.widget.FrameLayout.LayoutParams
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.demo1.R
 import com.example.demo1.databinding.ActivityVideoCallBinding
+import com.hyphenate.chat.EMClient
 import io.agora.rtc2.ChannelMediaOptions
 import io.agora.rtc2.Constants
 import io.agora.rtc2.IRtcEngineEventHandler
@@ -28,23 +31,25 @@ class VideoCallActivity : AppCompatActivity() {
     private val appId = "038147ad0b414ae4b4051c6104ffa7b4"
 
     // 填写频道名
-    private val channelName = "test01"
+    private var channelName: String? = null
 
     // 填写声网控制台中生成的临时 Token
     private val token =
-        "007eJxTYBAz1o7e18x+skBU22B/Xnjnp3CnQ9sPRFxJvr47WJObeYkCg4GxhaGJeWKKQZKJoUliqkmSiYGpYbKZoYFJWlqieZIJxwS11IZARoYGo39MjAwQCOKzMZSkFpcYGDIwAADB0h06"
+        "007eJxTYMjrVRGd0jD1/9oJyx+G/fnu+n62cvPea0svNHhrntg1WU5HgcHA2MLQxDwxxSDJxNAkMdUkycTA1DDZzNDAJC0t0TzJ5MNK+9SGQEaGIy9amBgZIBDE52IwNDAwMAQRBgwMAM+nInQ="
 
     private var mRtcEngine: RtcEngine? = null
 
-    private val imageView by lazy { ImageView(baseContext).apply {
-        setImageResource(R.drawable.reject_call)
-        setOnClickListener{
-            finish()
+    private val imageView by lazy {
+        ImageView(baseContext).apply {
+            setImageResource(R.drawable.reject_call)
+            setOnClickListener {
+                finish()
+            }
         }
-    } }
+    }
     private val imageLayoutParams: LayoutParams by lazy {
         LayoutParams(200, 200).apply {
-            gravity = Gravity.BOTTOM+Gravity.CENTER_HORIZONTAL
+            gravity = Gravity.BOTTOM + Gravity.CENTER_HORIZONTAL
             bottomMargin = 200
         }
     }
@@ -79,7 +84,7 @@ class VideoCallActivity : AppCompatActivity() {
         val container = binding.localVideoViewContainer
         val surfaceView = SurfaceView(baseContext)
         container.addView(surfaceView)
-        container.addView(imageView,imageLayoutParams)
+        container.addView(imageView, imageLayoutParams)
         // 将 SurfaceView 对象传入声网实时互动 SDK，设置本地视图
         mRtcEngine!!.setupLocalVideo(VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, 0))
 
@@ -91,7 +96,12 @@ class VideoCallActivity : AppCompatActivity() {
         options.channelProfile = Constants.CHANNEL_PROFILE_LIVE_BROADCASTING
 
         // 使用临时 Token 加入频道，自行指定用户 ID 并确保其在频道内的唯一性
-        mRtcEngine!!.joinChannel(token, channelName, 0, options)
+        mRtcEngine!!.joinChannel(
+            token,
+            channelName,
+            Integer.parseInt(EMClient.getInstance().currentUser),
+            options
+        )
     }
 
     private fun setupRemoteVideo(uid: Int) {
@@ -118,13 +128,26 @@ class VideoCallActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityVideoCallBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        checkIntent()
         // 如果已经授权，则初始化 RtcEngine 并加入频道
         if (checkSelfPermission(REQUESTED_PERMISSIONS[0], PERMISSION_REQ_ID) &&
             checkSelfPermission(REQUESTED_PERMISSIONS[1], PERMISSION_REQ_ID)
         ) {
             initializeAndJoinChannel()
         }
+    }
+
+    private fun checkIntent() {
+        intent?.also {
+            channelName = it.getStringExtra("channelName")
+//            channelName = "1000110000"
+        }
+        // TODO 生成临时TOKEN
+        if (channelName == null) {
+            Toast.makeText(this, "channelName error", Toast.LENGTH_SHORT).show()
+            finish()
+        }
+        Log.i(TAG, "checkIntent: channelName is $channelName")
     }
 
     override fun onDestroy() {
@@ -137,6 +160,7 @@ class VideoCallActivity : AppCompatActivity() {
 
     companion object {
         private const val PERMISSION_REQ_ID = 22
+        private const val TAG = "VideoCallActivity"
         private val REQUESTED_PERMISSIONS = arrayOf<String>(
             Manifest.permission.RECORD_AUDIO,
             Manifest.permission.CAMERA

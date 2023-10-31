@@ -17,6 +17,7 @@ import com.hyphenate.chat.EMUserInfo
 class ChatPageRecyclerAdapter :
     RecyclerView.Adapter<ChatPageRecyclerAdapter.Holder>() {
     val emMessages: ArrayDeque<EMMessage> = ArrayDeque<EMMessage>()
+
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imageView: ImageView? = null
         var textMsg: TextView? = null
@@ -41,7 +42,8 @@ class ChatPageRecyclerAdapter :
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val emMessage = emMessages[position]
 //        holder.imageView?.setImageURI(Uri.parse(getUserById(emMessage.from)?.avatarUrl))
-        holder.textMsg?.text = emMessage.body.toString()
+        val body = emMessage.body
+        holder.textMsg?.text = body.toString().split(":")[1].replace("\"", "")
     }
 
     private fun getUserById(str: String): EMUserInfo? {

@@ -12,24 +12,33 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/contact_back">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarChat"
-            android:background="@color/toolbar_back"
+            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+        <View
+            android:id="@+id/split_line"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_below="@+id/toolbarChat" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/messageList"
-            android:layout_below="@+id/toolbarChat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <LinearLayout
-            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:layout_below="@+id/split_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:orientation="horizontal"
             tools:context=".ui.SingleChatActivity">
 
